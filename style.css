@@ -1,0 +1,318 @@
+/* --- RESET DE BASE --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
+  color: #1a1a1a;
+}
+
+/* --- HEADER --- */
+header {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+header img[alt="plat"] {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 600px;
+  filter: brightness(0.6);
+}
+
+.header-logo {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+}
+
+.header-logo img {
+  width: 207px;
+  height: 25.261px;
+}
+
+.header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.header-title h1 {
+  color: var(--Yellow, #ffd15b);
+  text-align: center;
+  font-family: "Anton", sans-serif;
+  font-size: 44px;
+  font-style: normal;
+
+  line-height: normal;
+}
+
+.search-bar {
+  width: 954px;
+  height: 72px;
+  display: flex;
+  width: 954px;
+  height: 72px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 11px;
+  overflow: hidden;
+  margin-top: 30px;
+}
+::placeholder {
+  color: var(--Grey, #7a7a7a);
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  padding: 25px 35px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+}
+
+.search-bar button {
+  background-color: black;
+  border: none;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 51px;
+  height: 52px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.search-bar button img {
+  width: 27px;
+  height: 28px;
+}
+
+/* --- FILTRES --- */
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 100px;
+  background-color: #ececec;
+}
+
+.dropdowns {
+  display: flex;
+  gap: 20px;
+}
+
+.dropdown {
+  position: relative;
+  width: 200px;
+}
+
+.dropdown > button {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  background: white;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.search-container input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 5px;
+}
+
+.search-container img {
+  height: 18px;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.dropdown-menu li {
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+.recipe-count {
+  color: var(--Black, #1b1b1b);
+  font-family: "Anton", sans-serif;
+  font-size: 21px;
+  font-style: normal;
+}
+/* --- NOMBRE DE RECETTES --- */
+.ingredients-filter h2 {
+  font-size: 20px;
+  font-weight: bold;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+/* --- SECTION RECETTES --- */
+.recipe-grid {
+  background: #ededed;
+  padding: 55px 100px 0px 52px;
+}
+
+/* --- CARTE DE RECETTE --- */
+.recipe-card {
+  margin-left: 48px;
+  margin-bottom: 66px;
+  width: 380px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: scale(1.02);
+}
+
+.recipe-image-container {
+  position: relative;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 253px;
+  display: block;
+  object-fit: cover;
+}
+
+.recipe-time {
+  border-radius: 14px;
+  background: var(--Yellow, #ffd15b);
+  position: absolute;
+  padding: 5px 15px;
+  color: var(--Black, #1b1b1b);
+  text-align: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  margin: 26px 22px 0px 294px;
+}
+
+.recipe-content {
+  padding: 32px 26px 60px;
+}
+
+.recipe-content h2 {
+  color: #000;
+  font-family: "Anton", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.recipe-content h3 {
+  color: var(--Grey, #7a7a7a);
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: normal;
+  margin: 29px 0px 15px;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+}
+
+.recipe-instruction {
+  color: var(--Black, #1b1b1b);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.recipe-content p {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 32px;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 20px;
+  font-size: 14px;
+  color: #222;
+}
+
+.ingredients-grid span {
+  display: block;
+  font-weight: normal;
+  color: #777;
+  margin-top: 3px;
+  font-size: 13px;
+}
+.ingredients-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.ingredients-list li {
+  display: flex;
+  flex-direction: column;
+  color: var(--Black, #1b1b1b);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ingredients-list strong {
+  color: var(--Grey, #7a7a7a);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+}

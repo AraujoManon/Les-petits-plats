@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les petits plats</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <img src="images/headerImg.png" alt="plat" />
+      <div class="header-logo">
+        <img src="images/logo.svg" alt="logo" />
+      </div>
+      <div class="header-title">
+        <h1>
+          CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
+          DÉLICIEUSES
+        </h1>
+        <div class="search-bar">
+          <label for="site-search"></label>
+          <input
+            type="search"
+            id="site-search"
+            placeholder="Rechercher une recette, un ingrédient, ..."
+          />
+
+          <button><img src="images/searchButton.svg" alt="loupe" /></button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="filter-section">
+        <div class="dropdowns">
+          <div class="dropdown">
+            <button id="toggle-ingredients">
+              Ingrédients
+              <img src="images/arrowDown.svg" alt="flèche" />
+            </button>
+            <div id="menu-ingredients" class="dropdown-menu hidden">
+              <div class="search-container">
+                <input type="text" placeholder="Rechercher..." />
+                <img src="images/searchButton.svg" alt="search" />
+              </div>
+              <ul>
+                <li>Coulis de tomate</li>
+                <li>Huile d'olive</li>
+                <li>Oeuf dur</li>
+                <li>Pâte feuilletée</li>
+                <li>Moutarde de Dijon</li>
+                <li>Sucre en Poudre</li>
+                <li>Beurre</li>
+              </ul>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button id="toggle-appliances">
+              Appareils
+              <img src="images/arrowDown.svg" alt="flèche" />
+            </button>
+            <div id="menu-appliances" class="dropdown-menu hidden">
+              <div class="search-container">
+                <input type="text" placeholder="Rechercher..." />
+                <img src="images/searchButton.svg" alt="search" />
+              </div>
+              <ul>
+                <li>Four</li>
+                <li>Micro-ondes</li>
+                <li>Mixeur</li>
+                <li>Robot de cuisine</li>
+                <li>Grille-pain</li>
+              </ul>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button id="toggle-utensils">
+              Ustensiles
+              <img src="images/arrowDown.svg" alt="flèche" />
+            </button>
+            <div id="menu-utensils" class="dropdown-menu hidden">
+              <div class="search-container">
+                <input type="text" placeholder="Rechercher..." />
+                <img src="images/searchButton.svg" alt="search" />
+              </div>
+              <ul>
+                <li>Couteau</li>
+                <li>Spatule</li>
+                <li>Louche</li>
+                <li>Râpe</li>
+                <li>Fouet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p class="recipe-count">1500 recettes</p>
+      </section>
+      <section class="recipe-grid">
+        <article class="recipe-card">
+          <p class="recipe-time">45 min</p>
+          <img
+            src="images/exemplecarte.jpeg"
+            alt="recette"
+            class="recipe-image"
+          />
+          <div class="recipe-content">
+              <h2 class="recipe-title">Tarte aux pommes</h2>
+            <div class="recipe-details">
+              <div class="instructions">
+                <h3 class="recipe-h3">RECETTE</h3>
+                <p class="recipe-instruction">
+                  Mettre les glaçons à votre goût dans le blender, Ajouter le
+                  lait la crème de coco, le jus de 2 citrons et le sucre
+                  ensemble. Mixer jusqu'à obtenir la consistance désirée.
+                </p>
+              </div>
+              <div class="ingredients">
+                <h3 class="recipe-h3">Ingrédients</h3>
+                <ul class="ingredients-list">
+                  <li>Lait de coco<strong>400ml</strong></li>
+                  <li>Jus de citron<strong>2</strong></li>
+                  <li>Créme de coco<strong>4 cuillères</strong></li>
+                  <li>Sucre<strong>20g</strong></li>
+                  <li>Glaçons<strong>2</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
