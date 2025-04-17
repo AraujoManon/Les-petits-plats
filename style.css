@@ -108,9 +108,10 @@ header img[alt="plat"] {
   background-color: #ececec;
 }
 
-.dropdowns {
+#dropdowns {
   display: flex;
-  gap: 20px;
+  flex-direction: row;
+  gap: 64px;
 }
 
 .dropdown {
@@ -120,7 +121,7 @@ header img[alt="plat"] {
 
 .dropdown > button {
   width: 100%;
-  padding: 12px 15px;
+  padding: 17px 16px;
   font-size: 16px;
   background: white;
   border: none;
@@ -132,12 +133,16 @@ header img[alt="plat"] {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.dropdown > button.dropdown-open {
+  border-radius: 10px 10px 0px 0px !important;
+  box-shadow: 0 !important;
+}
+
 .dropdown-menu {
   position: absolute;
-  top: 110%;
   width: 100%;
   background: white;
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 10px;
   z-index: 10;
@@ -151,6 +156,7 @@ header img[alt="plat"] {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-direction: row-reverse;
   padding: 8px 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -162,6 +168,7 @@ header img[alt="plat"] {
   border: none;
   outline: none;
   padding: 5px;
+  width: 100%;
 }
 
 .search-container img {
@@ -321,4 +328,21 @@ header img[alt="plat"] {
   font-family: "Manrope", sans-serif;
   font-size: 14px;
   font-style: normal;
+}
+
+/* --- SEARCH BAR --- */
+.search-icons {
+  gap: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.clear-icon {
+  width: 6px;
+  height: 6px;
+}
+
+.search-icon {
+  width: 13.5px;
+  height: 14px;
 }

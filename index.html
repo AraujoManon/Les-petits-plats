@@ -38,72 +38,14 @@
     </header>
     <main>
       <section class="filter-section">
-        <div class="dropdowns">
-          <div class="dropdown">
-            <button id="toggle-ingredients">
-              Ingrédients
-              <img src="images/arrowDown.svg" alt="flèche" />
-            </button>
-            <div id="menu-ingredients" class="dropdown-menu hidden">
-              <div class="search-container">
-                <input type="text" placeholder="Rechercher..." />
-                <img src="images/searchButton.svg" alt="search" />
-              </div>
-              <ul>
-                <li>Coulis de tomate</li>
-                <li>Huile d'olive</li>
-                <li>Oeuf dur</li>
-                <li>Pâte feuilletée</li>
-                <li>Moutarde de Dijon</li>
-                <li>Sucre en Poudre</li>
-                <li>Beurre</li>
-              </ul>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button id="toggle-appliances">
-              Appareils
-              <img src="images/arrowDown.svg" alt="flèche" />
-            </button>
-            <div id="menu-appliances" class="dropdown-menu hidden">
-              <div class="search-container">
-                <input type="text" placeholder="Rechercher..." />
-                <img src="images/searchButton.svg" alt="search" />
-              </div>
-              <ul>
-                <li>Four</li>
-                <li>Micro-ondes</li>
-                <li>Mixeur</li>
-                <li>Robot de cuisine</li>
-                <li>Grille-pain</li>
-              </ul>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button id="toggle-utensils">
-              Ustensiles
-              <img src="images/arrowDown.svg" alt="flèche" />
-            </button>
-            <div id="menu-utensils" class="dropdown-menu hidden">
-              <div class="search-container">
-                <input type="text" placeholder="Rechercher..." />
-                <img src="images/searchButton.svg" alt="search" />
-              </div>
-              <ul>
-                <li>Couteau</li>
-                <li>Spatule</li>
-                <li>Louche</li>
-                <li>Râpe</li>
-                <li>Fouet</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <section id="dropdowns"></section>
+
         <p class="recipe-count">1500 recettes</p>
       </section>
       <section class="recipe-grid" id="recipe-grid"></section>
     </main>
     <script src="recipes.js"></script>
-    <script src="card.js"></script>
+    <script src="scripts/card.js"></script>
+    <script src="scripts/dropdown.js"></script>
   </body>
 </html>
