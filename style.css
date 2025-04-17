@@ -202,6 +202,9 @@ header img[alt="plat"] {
 .recipe-grid {
   background: #ededed;
   padding: 55px 100px 0px 52px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 /* --- CARTE DE RECETTE --- */
@@ -241,6 +244,7 @@ header img[alt="plat"] {
   font-family: "Manrope", sans-serif;
   font-size: 12px;
   margin: 26px 22px 0px 294px;
+  z-index: 1;
 }
 
 .recipe-content {
@@ -252,6 +256,8 @@ header img[alt="plat"] {
   font-family: "Anton", sans-serif;
   font-size: 18px;
   font-weight: 400;
+
+  margin-bottom: 30px;
 }
 
 .recipe-content h3 {
