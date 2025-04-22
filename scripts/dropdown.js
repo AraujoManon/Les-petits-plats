@@ -92,7 +92,7 @@
         li.textContent = v;
         li.addEventListener("click", () => {
           selectedFilters[id].push(v);
-          window.recipeApp.onFilterChange();
+          window.recipeApp.onFilterChangeFunctional(); // Utilisation de la version fonctionnelle ici !
           renderActiveFiltersFunctional();
           renderListFunctional(
             ul,
@@ -119,7 +119,7 @@
         closeBtn.textContent = "×";
         closeBtn.addEventListener("click", () => {
           selectedFilters[key] = selectedFilters[key].filter((x) => x !== v);
-          window.recipeApp.onFilterChange();
+          window.recipeApp.onFilterChangeFunctional(); // Utilisation de la version fonctionnelle ici !
           renderActiveFiltersFunctional();
           const dropdownMenu = document.getElementById(`menu-${key}`);
           if (dropdownMenu) {

@@ -1,4 +1,3 @@
-// search-bar.js (version fonctionnelle)
 (function () {
   const input = document.getElementById("site-search");
   const button = document.querySelector(".search-bar button");
