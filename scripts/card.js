@@ -1,19 +1,16 @@
 const recipeGrid = document.getElementById("recipe-grid");
 
-/**
- * Génère le HTML d'une card à partir d'un objet recette
- */
-function createRecipeCard(recipe) {
-  let ingredientsHTML = "";
-  recipe.ingredients.forEach((item) => {
-    const qty = item.quantity
-      ? `${item.quantity}${item.unit ? " " + item.unit : ""}`
-      : "";
-    ingredientsHTML +=
-      `<li><span>${item.ingredient}</span>` +
-      (qty ? `<strong>${qty}</strong>` : "") +
-      `</li>`;
-  });
+const createRecipeCardFunctional = (recipe) => {
+  const ingredientsHTML = recipe.ingredients
+    .map((item) => {
+      const qty = item.quantity
+        ? `${item.quantity}${item.unit ? " " + item.unit : ""}`
+        : "";
+      return `<li><span>${item.ingredient}</span>${
+        qty ? `<strong>${qty}</strong>` : ""
+      }</li>`;
+    })
+    .join("");
 
   return `
     <article class="recipe-card">
@@ -33,16 +30,12 @@ function createRecipeCard(recipe) {
       </div>
     </article>
   `;
-}
+};
 
-/**
- * Injecte dans le DOM la liste de recettes fournie
- */
-function displayRecipes(list) {
-  recipeGrid.innerHTML = list.map(createRecipeCard).join("");
-}
+const displayRecipesFunctional = (list) => {
+  recipeGrid.innerHTML = list.map(createRecipeCardFunctional).join("");
+};
 
-// Exposition “publique”
 window.recipeApp = window.recipeApp || {};
-window.recipeApp.createRecipeCard = createRecipeCard;
-window.recipeApp.displayRecipes = displayRecipes;
+window.recipeApp.createRecipeCardFunctional = createRecipeCardFunctional;
+window.recipeApp.displayRecipesFunctional = displayRecipesFunctional;

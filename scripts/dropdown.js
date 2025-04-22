@@ -1,9 +1,6 @@
-// dropdown.js
 (function () {
   const container = document.getElementById("dropdowns");
-  const activeFiltersContainer = document.querySelector(".filter-section"); // Sélection du conteneur des filtres actifs
-
-  // Filtres sélectionnés
+  const activeFiltersContainer = document.querySelector(".filter-section");
   const selectedFilters = {
     ingredients: [],
     appliances: [],
@@ -12,38 +9,37 @@
   window.recipeApp = window.recipeApp || {};
   window.recipeApp.selectedFilters = selectedFilters;
 
-  function uniqueValues(recipes, key) {
-    const set = new Set();
-    recipes.forEach((r) => {
-      if (key === "ingredients")
-        r.ingredients.forEach((i) => set.add(i.ingredient));
-      else if (key === "utensils") r.ustensils.forEach((u) => set.add(u));
-      else if (key === "appliances") set.add(r.appliance);
-    });
-    return Array.from(set).sort((a, b) => a.localeCompare(b, "fr"));
-  }
+  const uniqueValuesFunctional = (recipes, key) => {
+    return Array.from(
+      new Set(
+        recipes.flatMap((r) => {
+          if (key === "ingredients")
+            return r.ingredients.map((i) => i.ingredient);
+          if (key === "utensils") return r.ustensils;
+          if (key === "appliances") return [r.appliance];
+          return [];
+        })
+      )
+    ).sort((a, b) => a.localeCompare(b, "fr"));
+  };
 
-  function createDropdown({ id, label, items }) {
-    // Si le dropdown existe déjà, on ne le recrée pas, on met à jour sa liste.
+  const createDropdownFunctional = ({ id, label, items }) => {
     let dropdown = document.getElementById("dropdown-" + id);
     if (dropdown) {
       const ul = dropdown.querySelector("ul");
-      renderList(ul, id, items);
+      renderListFunctional(ul, id, items);
       return;
     }
 
-    // Sinon, création complète
     dropdown = document.createElement("div");
     dropdown.id = "dropdown-" + id;
     dropdown.classList.add("dropdown");
 
-    // Bouton
     const btn = document.createElement("button");
     btn.id = `toggle-${id}`;
     btn.innerHTML = `${label} <img src="images/arrowDown.svg" alt="flèche">`;
     dropdown.appendChild(btn);
 
-    // Menu + recherche
     const menu = document.createElement("div");
     menu.id = `menu-${id}`;
     menu.className = "dropdown-menu hidden";
@@ -58,7 +54,6 @@
       <ul></ul>`;
     dropdown.appendChild(menu);
 
-    // Bind toggle
     btn.addEventListener("click", () => {
       const hidden = menu.classList.toggle("hidden");
       btn.querySelector("img").src = hidden
@@ -66,7 +61,6 @@
         : "images/arrowTop.svg";
     });
 
-    // Recherche dans dropdown
     const inputEl = menu.querySelector(".search-input");
     const clearIcon = menu.querySelector(".clear-icon");
     inputEl.addEventListener("input", () => {
@@ -84,40 +78,39 @@
       inputEl.dispatchEvent(new Event("input"));
     });
 
-    // Première liste
-    renderList(menu.querySelector("ul"), id, items);
+    renderListFunctional(menu.querySelector("ul"), id, items);
 
     container.appendChild(dropdown);
-  }
+  };
 
-  function renderList(ul, id, items) {
+  const renderListFunctional = (ul, id, items) => {
     ul.innerHTML = "";
-    items.forEach((v) => {
-      const li = document.createElement("li");
-      li.textContent = v;
-      li.addEventListener("click", () => {
-        selectedFilters[id].push(v);
-        window.recipeApp.onFilterChange();
-        renderActiveFilters(); // Affichage des filtres actifs sous forme de tags
-        renderList(
-          ul,
-          id,
-          items.filter((item) => !selectedFilters[id].includes(item))
-        ); // Mise à jour de la liste du dropdown
+    items
+      .filter((v) => !selectedFilters[id].includes(v))
+      .forEach((v) => {
+        const li = document.createElement("li");
+        li.textContent = v;
+        li.addEventListener("click", () => {
+          selectedFilters[id].push(v);
+          window.recipeApp.onFilterChange();
+          renderActiveFiltersFunctional();
+          renderListFunctional(
+            ul,
+            id,
+            items.filter((item) => !selectedFilters[id].includes(item))
+          );
+        });
+        ul.appendChild(li);
       });
-      ul.appendChild(li);
-    });
-  }
+  };
 
-  function renderActiveFilters() {
-    // Supprimer les anciens tags de filtre
+  const renderActiveFiltersFunctional = () => {
     activeFiltersContainer
       .querySelectorAll(".tag")
       .forEach((tag) => tag.remove());
 
-    // Créer et ajouter les nouveaux tags de filtre
-    for (const key in selectedFilters) {
-      selectedFilters[key].forEach((v) => {
+    Object.entries(selectedFilters).forEach(([key, values]) => {
+      values.forEach((v) => {
         const tag = document.createElement("span");
         tag.className = "tag";
         tag.textContent = v;
@@ -127,14 +120,13 @@
         closeBtn.addEventListener("click", () => {
           selectedFilters[key] = selectedFilters[key].filter((x) => x !== v);
           window.recipeApp.onFilterChange();
-          renderActiveFilters(); // Mise à jour de l'affichage des tags
-          // Mise à jour de la liste du dropdown correspondant
+          renderActiveFiltersFunctional();
           const dropdownMenu = document.getElementById(`menu-${key}`);
           if (dropdownMenu) {
             const ul = dropdownMenu.querySelector("ul");
             const allItems = window.recipeApp.allDropdownItems[key];
             if (allItems) {
-              renderList(
+              renderListFunctional(
                 ul,
                 key,
                 allItems.filter((item) => !selectedFilters[key].includes(item))
@@ -146,38 +138,37 @@
         activeFiltersContainer.insertBefore(
           tag,
           document.getElementById("dropdowns")
-        ); // Ajout avant les dropdowns
+        );
       });
-    }
-  }
+    });
+  };
 
-  function updateDropdowns(recipes) {
+  const updateDropdownsFunctional = (recipes) => {
     const menus = [
       {
         id: "ingredients",
         label: "Ingrédients",
-        items: uniqueValues(recipes, "ingredients"),
+        items: uniqueValuesFunctional(recipes, "ingredients"),
       },
       {
         id: "appliances",
         label: "Appareils",
-        items: uniqueValues(recipes, "appliances"),
+        items: uniqueValuesFunctional(recipes, "appliances"),
       },
       {
         id: "utensils",
         label: "Ustensiles",
-        items: uniqueValues(recipes, "utensils"),
+        items: uniqueValuesFunctional(recipes, "utensils"),
       },
     ];
     menus.forEach((menu) => {
-      createDropdown(menu);
-      // Stockage de tous les items
+      createDropdownFunctional(menu);
       window.recipeApp.allDropdownItems =
         window.recipeApp.allDropdownItems || {};
       window.recipeApp.allDropdownItems[menu.id] = menu.items;
     });
-    renderActiveFilters(); // Affichage initial des filtres (si il y en a déjà)
-  }
+    renderActiveFiltersFunctional();
+  };
 
-  window.recipeApp.updateDropdowns = updateDropdowns;
+  window.recipeApp.updateDropdownsFunctional = updateDropdownsFunctional;
 })();
