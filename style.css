@@ -51,7 +51,6 @@ header img[alt="plat"] {
   font-family: "Anton", sans-serif;
   font-size: 44px;
   font-style: normal;
-
   line-height: normal;
 }
 
@@ -59,8 +58,6 @@ header img[alt="plat"] {
   width: 954px;
   height: 72px;
   display: flex;
-  width: 954px;
-  height: 72px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -69,16 +66,26 @@ header img[alt="plat"] {
   overflow: hidden;
   margin-top: 30px;
 }
-::placeholder {
+
+.search-bar::placeholder {
   color: var(--Grey, #7a7a7a);
   font-family: "Manrope", sans-serif;
   font-size: 16px;
   padding: 25px 35px;
+  border: none;
 }
 
 .search-bar input {
   flex: 1;
   border: none;
+  padding: 25px 35px;
+  color: var(--Grey, #7a7a7a);
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+}
+
+.search-bar input:focus {
+  outline: none;
 }
 
 .search-bar button {
@@ -94,6 +101,10 @@ header img[alt="plat"] {
   margin: 10px;
 }
 
+.search-bar button:hover {
+  background-color: #ffd15b;
+}
+
 .search-bar button img {
   width: 27px;
   height: 28px;
@@ -102,9 +113,9 @@ header img[alt="plat"] {
 /* --- FILTRES --- */
 .filter-section {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 100px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px 100px 0px 100px;
   background-color: #ececec;
 }
 
@@ -112,6 +123,15 @@ header img[alt="plat"] {
   display: flex;
   flex-direction: row;
   gap: 64px;
+  margin-bottom: 20px;
+}
+
+#selected-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .dropdown {
@@ -130,24 +150,31 @@ header img[alt="plat"] {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: border-radius 0.3s ease;
 }
 
 .dropdown > button.dropdown-open {
   border-radius: 10px 10px 0px 0px !important;
-  box-shadow: 0 !important;
+  box-shadow: none !important
 }
 
 .dropdown-menu {
   position: absolute;
   width: 100%;
+  display: flex;
   background: white;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 10px;
+  padding: 10px 0px;
   z-index: 10;
-}
+  max-height: 200px;
+  overflow-y: auto;
+  flex-direction: column;
+  align-items: center;
 
+  padding: 0px;
+}
 .hidden {
   display: none;
 }
@@ -155,12 +182,12 @@ header img[alt="plat"] {
 .search-container {
   display: flex;
   align-items: center;
-  gap: 8px;
   flex-direction: row-reverse;
   padding: 8px 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  margin-bottom: 10px;
+  width: 90%;
+  margin: 0px 20px 10px 20px;
 }
 
 .search-container input {
@@ -178,46 +205,72 @@ header img[alt="plat"] {
 .dropdown-menu ul {
   list-style: none;
   padding: 0;
-  max-height: 180px;
-  overflow-y: auto;
 }
 
 .dropdown-menu li {
-  padding: 6px 10px;
+  padding: 5px 27px;
   cursor: pointer;
   font-size: 14px;
+  width: 100%;
 }
 
 .dropdown-menu li:hover {
-  background-color: #f0f0f0;
+  background-color: #ffd15b;
 }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--Yellow, #ffd15b);
+  color: #1b1b1b;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 10px;
+}
+
+.tag-close {
+  background: none;
+  border: none;
+  color: #1b1b1b;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.tag-close:hover {
+  opacity: 1;
+}
+
+/* --- NOMBRE DE RECETTES --- */
 .recipe-count {
   color: var(--Black, #1b1b1b);
   font-family: "Anton", sans-serif;
   font-size: 21px;
   font-style: normal;
-}
-/* --- NOMBRE DE RECETTES --- */
-.ingredients-filter h2 {
-  font-size: 20px;
-  font-weight: bold;
-  align-self: flex-end;
-  margin-left: auto;
+  position: relative;
+  top: -82px;
+  right: -90%;
 }
 
 /* --- SECTION RECETTES --- */
 .recipe-grid {
   background: #ededed;
-  padding: 55px 100px 0px 52px;
+  padding: 0px 100px 0px 100px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 48px 50px;
 }
 
 /* --- CARTE DE RECETTE --- */
 .recipe-card {
-  margin-left: 48px;
-  margin-bottom: 66px;
   width: 380px;
   background: white;
   border-radius: 20px;
@@ -250,7 +303,8 @@ header img[alt="plat"] {
   text-align: center;
   font-family: "Manrope", sans-serif;
   font-size: 12px;
-  margin: 26px 22px 0px 294px;
+  margin-top: 20px;
+  margin-left: 295px;
   z-index: 1;
 }
 
@@ -263,7 +317,6 @@ header img[alt="plat"] {
   font-family: "Anton", sans-serif;
   font-size: 18px;
   font-weight: 400;
-
   margin-bottom: 30px;
 }
 
@@ -283,29 +336,11 @@ header img[alt="plat"] {
   font-family: "Manrope", sans-serif;
   font-size: 14px;
   font-weight: 400;
+  margin-bottom: 20px;
+  max-height: 80px;
+  overflow: hidden;
 }
 
-.recipe-content p {
-  font-size: 15px;
-  color: #333;
-  margin-bottom: 32px;
-}
-
-.ingredients-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px 20px;
-  font-size: 14px;
-  color: #222;
-}
-
-.ingredients-grid span {
-  display: block;
-  font-weight: normal;
-  color: #777;
-  margin-top: 3px;
-  font-size: 13px;
-}
 .ingredients-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -330,7 +365,7 @@ header img[alt="plat"] {
   font-style: normal;
 }
 
-/* --- SEARCH BAR --- */
+/* --- SEARCH BAR ICONS --- */
 .search-icons {
   gap: 10px;
   display: flex;
@@ -338,8 +373,12 @@ header img[alt="plat"] {
 }
 
 .clear-icon {
-  width: 6px;
-  height: 6px;
+  width: 13px;
+  height: 13px;
+}
+
+.search-bar__clear-icon {
+  margin-right: 10px;
 }
 
 .search-icon {
