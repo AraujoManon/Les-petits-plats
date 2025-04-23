@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 (function () {
   // Référence au champ principal
   const input = document.getElementById("site-search");
@@ -30,8 +31,6 @@
     );
 
     // 2.b) on affiche et on met à jour les dropdowns
-    if (byTags.length === 0 && baseList !== window.recipeApp.currentResults) {
-    }
     window.recipeApp.displayRecipesFunctional(byTags);
     window.recipeApp.currentResults = [...byTags];
     window.recipeApp.updateDropdownsFunctional(byTags);

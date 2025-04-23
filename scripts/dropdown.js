@@ -1,6 +1,9 @@
 (function () {
   const container = document.getElementById("dropdowns");
-  const activeFiltersContainer = document.querySelector(".filter-section");
+  const selectedTagsContainer = document.getElementById(
+    "selected-tags-container"
+  );
+
   const selectedFilters = {
     ingredients: [],
     appliances: [],
@@ -49,16 +52,31 @@
           <img src="images/searchDropdown.svg" class="search-icon"/>
           <img src="images/closeDropdown.svg" class="clear-icon hidden"/>
         </div>
-        <input type="text" placeholder="Rechercher ${label.toLowerCase()}" class="search-input"/>
+        <input type="text" class="search-input"/>
       </div>
       <ul></ul>`;
     dropdown.appendChild(menu);
 
     btn.addEventListener("click", () => {
-      const hidden = menu.classList.toggle("hidden");
-      btn.querySelector("img").src = hidden
+      const isHidden = menu.classList.toggle("hidden");
+      btn.classList.toggle("dropdown-open", !isHidden);
+
+      btn.querySelector("img").src = isHidden
         ? "images/arrowDown.svg"
         : "images/arrowTop.svg";
+      document.querySelectorAll(".dropdown-menu").forEach((otherMenu) => {
+        if (otherMenu !== menu && !otherMenu.classList.contains("hidden")) {
+          otherMenu.classList.add("hidden");
+          const otherBtn = otherMenu.previousElementSibling;
+          if (otherBtn && otherBtn.tagName === "BUTTON") {
+            otherBtn.classList.remove("dropdown-open");
+            const otherArrow = otherBtn.querySelector("img");
+            if (otherArrow) {
+              otherArrow.src = "images/arrowDown.svg";
+            }
+          }
+        }
+      });
     });
 
     const inputEl = menu.querySelector(".search-input");
@@ -92,34 +110,43 @@
         li.textContent = v;
         li.addEventListener("click", () => {
           selectedFilters[id].push(v);
-          window.recipeApp.onFilterChangeFunctional(); // Utilisation de la version fonctionnelle ici !
+          window.recipeApp.onFilterChangeFunctional();
           renderActiveFiltersFunctional();
           renderListFunctional(
             ul,
             id,
-            items.filter((item) => !selectedFilters[id].includes(item))
+            window.recipeApp.allDropdownItems[id].filter(
+              (item) => !selectedFilters[id].includes(item)
+            )
           );
+
+          const menu = document.getElementById(`menu-${id}`);
+          const btn = document.getElementById(`toggle-${id}`);
+          if (menu && btn) {
+            menu.classList.add("hidden");
+            btn.classList.remove("dropdown-open");
+            btn.querySelector("img").src = "images/arrowDown.svg";
+          }
         });
         ul.appendChild(li);
       });
   };
 
   const renderActiveFiltersFunctional = () => {
-    activeFiltersContainer
-      .querySelectorAll(".tag")
-      .forEach((tag) => tag.remove());
+    selectedTagsContainer.innerHTML = "";
 
     Object.entries(selectedFilters).forEach(([key, values]) => {
       values.forEach((v) => {
         const tag = document.createElement("span");
-        tag.className = "tag";
+        tag.className = `tag tag-${key}`;
         tag.textContent = v;
+
         const closeBtn = document.createElement("button");
         closeBtn.className = "tag-close";
         closeBtn.textContent = "×";
         closeBtn.addEventListener("click", () => {
           selectedFilters[key] = selectedFilters[key].filter((x) => x !== v);
-          window.recipeApp.onFilterChangeFunctional(); // Utilisation de la version fonctionnelle ici !
+          window.recipeApp.onFilterChangeFunctional();
           renderActiveFiltersFunctional();
           const dropdownMenu = document.getElementById(`menu-${key}`);
           if (dropdownMenu) {
@@ -135,10 +162,7 @@
           }
         });
         tag.appendChild(closeBtn);
-        activeFiltersContainer.insertBefore(
-          tag,
-          document.getElementById("dropdowns")
-        );
+        selectedTagsContainer.appendChild(tag);
       });
     });
   };
@@ -161,12 +185,16 @@
         items: uniqueValuesFunctional(recipes, "utensils"),
       },
     ];
+
+    window.recipeApp.allDropdownItems = {};
     menus.forEach((menu) => {
-      createDropdownFunctional(menu);
-      window.recipeApp.allDropdownItems =
-        window.recipeApp.allDropdownItems || {};
       window.recipeApp.allDropdownItems[menu.id] = menu.items;
     });
+
+    menus.forEach((menu) => {
+      createDropdownFunctional(menu);
+    });
+
     renderActiveFiltersFunctional();
   };
 

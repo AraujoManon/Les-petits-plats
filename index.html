@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,46 +9,43 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
+        rel="stylesheet"
     />
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <img src="images/headerImg.png" alt="plat" />
-      <div class="header-logo">
-        <img src="images/logo.svg" alt="logo" />
-      </div>
-      <div class="header-title">
-        <h1>
-          CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
-          DÉLICIEUSES
-        </h1>
-        <div class="search-bar">
-          <label for="site-search"></label>
-          <input
-            type="search"
-            id="site-search"
-            placeholder="Rechercher une recette, un ingrédient, ..."
-          />
-
-          <button><img src="images/searchButton.svg" alt="loupe" /></button>
+        <img src="images/headerImg.png" alt="plat" />
+        <div class="header-logo">
+            <img src="images/logo.svg" alt="logo" />
         </div>
-      </div>
+        <div class="header-title">
+            <h1>
+                CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
+                DÉLICIEUSES
+            </h1>
+            <div class="search-bar">
+              <input id="site-search" type="text" placeholder="Rechercher une recette, un ingrédient, ...">
+              <img src="images/closeDropdown.svg" class="clear-icon search-bar__clear-icon" alt="Effacer" style="display: none;">
+
+              <button>
+                <img src="images/searchButton.svg" alt="loupe">
+              </button>
+            </div>
+        </div>
     </header>
     <main>
-      <section class="filter-section">
-        <section id="dropdowns"></section>
-
-        <p class="recipe-count">1500 recettes</p>
-      </section>
-      <section class="recipe-grid" id="recipe-grid"></section>
+        <section class="filter-section">
+            <section id="dropdowns"></section>
+            <div id="selected-tags-container"></div>
+            <p class="recipe-count">1500 recettes</p>
+        </section>
+        <section class="recipe-grid" id="recipe-grid"></section>
     </main>
     <script src="recipes.js"></script>
     <script src="scripts/card.js"></script>
-    <script src="scripts/dropdown.js"></script>
-    <script src="scripts/search-bar.js"></script>
+    <script src="scripts/dropdown.js"></script> <script src="scripts/search-bar.js"></script>
     <script src="scripts/main.js"></script>
-    
-  </body>
+
+</body>
 </html>
